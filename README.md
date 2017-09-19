@@ -49,37 +49,50 @@
 ###### URL 截断跳转问题：
 
 解析 URL ,依据 规则跳转到对应的 Native 控制器 。
+
 规则初步拟定：
-1. 域名区分站内与站外
-2. 协议头 域名 端口 文件路径 参数
+* 1.域名区分站内与站外
 
-   https://域名:端口/文件路径?参数
-   https://域名:端口/文件路径/?参数
+* 2.协议头 域名 端口 文件路径 参数
 
-   https://域名:端口/文件路径.html
-   https://域名:端口/文件路径
-   https://域名:端口/文件路径/
+>   https://域名:端口/文件路径?参数
 
+>   https://域名:端口/文件路径/?参数
 
-   https://m.hinabian.com/visa/index.html
-   https      m.hinabian.com       /visa/index.html
+>   https://域名:端口/文件路径.html
 
-   https://m.hinabian.com/visa/countryList.html?country_id=43
-   https     m.hinabian.com        /visa/countryList.html      country_id=43
+>   https://域名:端口/文件路径
 
-   https://m.hinabian.com/native/visa/detail/?project_id=15002067
-   https    m.hinabian.com         /native/visa/detail         project_id=15002067
+>   https://域名:端口/文件路径/
 
 
-3. 可自定义部分为 文件路径
+>   https://m.hinabian.com/visa/index.html
+
+>   https         m.hinabian.com           /visa/index.html
+
+>   https://m.hinabian.com/visa/countryList.html?country_id=43
+
+>   https         m.hinabian.com           /visa/countryList.html          country_id=43
+
+>   https://m.hinabian.com/native/visa/detail/?project_id=15002067
+
+>   https        m.hinabian.com             /native/visa/detail             project_id=15002067
+
+
+
+* 3.可自定义部分为 文件路径
 
     文件路径 ： 标记跳转的功能块
 
 
-4. 功能对应关系
+* 4.功能对应关系
 
     帖子详情 ----- jumpTribeThemDetail
     问答详情 ----- jumpQaDetail
     问答搜索 ----- jumpQaSearch
     问答提问 ----- jumpQaPickUpQuestion
     移民评估 ----- jumpImaseess
+
+##### 参考
+> iOS下JS与原生OC的交互在应用层面技术比较单一；网上可查资料也比较多；这里附上可参考的系列文章。
+* [iOS下JS与原生OC互相调用 - 系列文章](http://www.jianshu.com/p/d19689e0ed83)
