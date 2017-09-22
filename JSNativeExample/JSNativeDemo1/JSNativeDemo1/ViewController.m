@@ -10,7 +10,6 @@
 #import "UIWebVC.h"
 #import "WKWebVC.h"
 
-
 @interface ViewController ()
 
 @end
@@ -24,9 +23,11 @@
 
 
 - (IBAction)clickUIWeb:(id)sender {
+    [self.navigationController pushViewController:[[UIWebVC alloc] init] animated:TRUE];
 }
 
 - (IBAction)clickWKWeb:(id)sender {
+    [self.navigationController pushViewController:[[WKWebVC alloc] init] animated:TRUE];
 }
 
 @end

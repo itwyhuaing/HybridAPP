@@ -6,7 +6,6 @@
 //  Copyright © 2017年 hainbwyh. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "BaseWebVC.h"
 
 @interface WKWebVC : BaseWebVC

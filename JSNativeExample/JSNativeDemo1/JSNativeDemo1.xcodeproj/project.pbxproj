@@ -13,10 +13,12 @@
 		2655D6831F75076D0094C06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2655D6811F75076D0094C06B /* LaunchScreen.storyboard */; };
 		2655D68E1F7507770094C06B /* JSNativeDemo1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2655D68D1F7507770094C06B /* JSNativeDemo1Tests.m */; };
 		2655D6991F7507780094C06B /* JSNativeDemo1UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2655D6981F7507780094C06B /* JSNativeDemo1UITests.m */; };
-		265B147D1F750E7600E9FA8F /* WebVC in Resources */ = {isa = PBXBuildFile; fileRef = 265B147B1F750E7600E9FA8F /* WebVC */; };
 		265B148A1F750F9000E9FA8F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 265B14871F750F9000E9FA8F /* AppDelegate.m */; };
 		265B148B1F750F9000E9FA8F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265B14891F750F9000E9FA8F /* ViewController.m */; };
 		265B148E1F750FE600E9FA8F /* BaseWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 265B148D1F750FE600E9FA8F /* BaseWebVC.m */; };
+		268C02501F7521CE00A21D98 /* BaseWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 268C024F1F7521CE00A21D98 /* BaseWebVC.m */; };
+		268C02531F7521FC00A21D98 /* UIWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 268C02521F7521FC00A21D98 /* UIWebVC.m */; };
+		268C02561F75220C00A21D98 /* WKWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 268C02551F75220C00A21D98 /* WKWebVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,13 +51,18 @@
 		2655D6941F7507780094C06B /* JSNativeDemo1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSNativeDemo1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2655D6981F7507780094C06B /* JSNativeDemo1UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSNativeDemo1UITests.m; sourceTree = "<group>"; };
 		2655D69A1F7507780094C06B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		265B147B1F750E7600E9FA8F /* WebVC */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WebVC; sourceTree = "<group>"; };
 		265B14861F750F9000E9FA8F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		265B14871F750F9000E9FA8F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		265B14881F750F9000E9FA8F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		265B14891F750F9000E9FA8F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		265B148C1F750FE600E9FA8F /* BaseWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebVC.h; sourceTree = "<group>"; };
 		265B148D1F750FE600E9FA8F /* BaseWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebVC.m; sourceTree = "<group>"; };
+		268C024E1F7521CE00A21D98 /* BaseWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebVC.h; sourceTree = "<group>"; };
+		268C024F1F7521CE00A21D98 /* BaseWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebVC.m; sourceTree = "<group>"; };
+		268C02511F7521FC00A21D98 /* UIWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebVC.h; sourceTree = "<group>"; };
+		268C02521F7521FC00A21D98 /* UIWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebVC.m; sourceTree = "<group>"; };
+		268C02541F75220C00A21D98 /* WKWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebVC.h; sourceTree = "<group>"; };
+		268C02551F75220C00A21D98 /* WKWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,11 +113,11 @@
 		2655D6721F75076A0094C06B /* JSNativeDemo1 */ = {
 			isa = PBXGroup;
 			children = (
+				268C024A1F7520FC00A21D98 /* WebVC */,
 				265B14861F750F9000E9FA8F /* AppDelegate.h */,
 				265B14871F750F9000E9FA8F /* AppDelegate.m */,
 				265B14881F750F9000E9FA8F /* ViewController.h */,
 				265B14891F750F9000E9FA8F /* ViewController.m */,
-				265B147B1F750E7600E9FA8F /* WebVC */,
 				2655D67C1F75076D0094C06B /* Main.storyboard */,
 				2655D67F1F75076D0094C06B /* Assets.xcassets */,
 				2655D6811F75076D0094C06B /* LaunchScreen.storyboard */,
@@ -146,6 +153,19 @@
 				2655D69A1F7507780094C06B /* Info.plist */,
 			);
 			path = JSNativeDemo1UITests;
+			sourceTree = "<group>";
+		};
+		268C024A1F7520FC00A21D98 /* WebVC */ = {
+			isa = PBXGroup;
+			children = (
+				268C024E1F7521CE00A21D98 /* BaseWebVC.h */,
+				268C024F1F7521CE00A21D98 /* BaseWebVC.m */,
+				268C02511F7521FC00A21D98 /* UIWebVC.h */,
+				268C02521F7521FC00A21D98 /* UIWebVC.m */,
+				268C02541F75220C00A21D98 /* WKWebVC.h */,
+				268C02551F75220C00A21D98 /* WKWebVC.m */,
+			);
+			path = WebVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +277,6 @@
 			files = (
 				2655D6831F75076D0094C06B /* LaunchScreen.storyboard in Resources */,
 				2655D6801F75076D0094C06B /* Assets.xcassets in Resources */,
-				265B147D1F750E7600E9FA8F /* WebVC in Resources */,
 				2655D67E1F75076D0094C06B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +306,9 @@
 				265B148B1F750F9000E9FA8F /* ViewController.m in Sources */,
 				265B148A1F750F9000E9FA8F /* AppDelegate.m in Sources */,
 				2655D6751F75076B0094C06B /* main.m in Sources */,
+				268C02561F75220C00A21D98 /* WKWebVC.m in Sources */,
+				268C02501F7521CE00A21D98 /* BaseWebVC.m in Sources */,
+				268C02531F7521FC00A21D98 /* UIWebVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
