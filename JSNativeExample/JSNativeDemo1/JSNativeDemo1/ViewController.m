@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "UIWebVC.h"
+#import "WKWebVC.h"
+
 
 @interface ViewController ()
 
@@ -20,10 +23,10 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)clickUIWeb:(id)sender {
 }
 
+- (IBAction)clickWKWeb:(id)sender {
+}
 
 @end
