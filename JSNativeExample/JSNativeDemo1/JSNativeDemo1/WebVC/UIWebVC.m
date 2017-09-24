@@ -10,28 +10,24 @@
 
 @interface UIWebVC ()
 
+@property (nonatomic,strong) UIWebView *uiweb;
+
 @end
 
 @implementation UIWebVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(UIWebView *)uiweb{
+    if (_uiweb) {
+        _uiweb = [[UIWebView alloc] initWithFrame:self.view.bounds];
+        _uiweb.backgroundColor = [UIColor redColor];
+        [self.view addSubview:_uiweb];
+    }
+    return _uiweb;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

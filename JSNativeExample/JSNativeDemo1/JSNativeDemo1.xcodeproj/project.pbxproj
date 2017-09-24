@@ -15,10 +15,12 @@
 		2655D6991F7507780094C06B /* JSNativeDemo1UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2655D6981F7507780094C06B /* JSNativeDemo1UITests.m */; };
 		265B148A1F750F9000E9FA8F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 265B14871F750F9000E9FA8F /* AppDelegate.m */; };
 		265B148B1F750F9000E9FA8F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265B14891F750F9000E9FA8F /* ViewController.m */; };
-		265B148E1F750FE600E9FA8F /* BaseWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 265B148D1F750FE600E9FA8F /* BaseWebVC.m */; };
 		268C02501F7521CE00A21D98 /* BaseWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 268C024F1F7521CE00A21D98 /* BaseWebVC.m */; };
 		268C02531F7521FC00A21D98 /* UIWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 268C02521F7521FC00A21D98 /* UIWebVC.m */; };
 		268C02561F75220C00A21D98 /* WKWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 268C02551F75220C00A21D98 /* WKWebVC.m */; };
+		46E6F4851F7749550079F9ED /* jsoc.css in Resources */ = {isa = PBXBuildFile; fileRef = 46E6F4821F7749550079F9ED /* jsoc.css */; };
+		46E6F4861F7749550079F9ED /* jsoc.html in Resources */ = {isa = PBXBuildFile; fileRef = 46E6F4831F7749550079F9ED /* jsoc.html */; };
+		46E6F4871F7749550079F9ED /* jsoc.js in Resources */ = {isa = PBXBuildFile; fileRef = 46E6F4841F7749550079F9ED /* jsoc.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,9 @@
 		268C02521F7521FC00A21D98 /* UIWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebVC.m; sourceTree = "<group>"; };
 		268C02541F75220C00A21D98 /* WKWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebVC.h; sourceTree = "<group>"; };
 		268C02551F75220C00A21D98 /* WKWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebVC.m; sourceTree = "<group>"; };
+		46E6F4821F7749550079F9ED /* jsoc.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = jsoc.css; sourceTree = "<group>"; };
+		46E6F4831F7749550079F9ED /* jsoc.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = jsoc.html; sourceTree = "<group>"; };
+		46E6F4841F7749550079F9ED /* jsoc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jsoc.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +118,7 @@
 		2655D6721F75076A0094C06B /* JSNativeDemo1 */ = {
 			isa = PBXGroup;
 			children = (
+				46E6F4811F7749550079F9ED /* Web */,
 				268C024A1F7520FC00A21D98 /* WebVC */,
 				265B14861F750F9000E9FA8F /* AppDelegate.h */,
 				265B14871F750F9000E9FA8F /* AppDelegate.m */,
@@ -166,6 +172,16 @@
 				268C02551F75220C00A21D98 /* WKWebVC.m */,
 			);
 			path = WebVC;
+			sourceTree = "<group>";
+		};
+		46E6F4811F7749550079F9ED /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				46E6F4821F7749550079F9ED /* jsoc.css */,
+				46E6F4831F7749550079F9ED /* jsoc.html */,
+				46E6F4841F7749550079F9ED /* jsoc.js */,
+			);
+			path = Web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,8 +291,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46E6F4861F7749550079F9ED /* jsoc.html in Resources */,
 				2655D6831F75076D0094C06B /* LaunchScreen.storyboard in Resources */,
 				2655D6801F75076D0094C06B /* Assets.xcassets in Resources */,
+				46E6F4871F7749550079F9ED /* jsoc.js in Resources */,
+				46E6F4851F7749550079F9ED /* jsoc.css in Resources */,
 				2655D67E1F75076D0094C06B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,7 +321,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				265B148E1F750FE600E9FA8F /* BaseWebVC.m in Sources */,
 				265B148B1F750F9000E9FA8F /* ViewController.m in Sources */,
 				265B148A1F750F9000E9FA8F /* AppDelegate.m in Sources */,
 				2655D6751F75076B0094C06B /* main.m in Sources */,
@@ -459,6 +477,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JA7UMD99EC;
 				INFOPLIST_FILE = JSNativeDemo1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hainbwyh.JSNativeDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -471,6 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JA7UMD99EC;
 				INFOPLIST_FILE = JSNativeDemo1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hainbwyh.JSNativeDemo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -10,4 +10,6 @@
 
 @interface BaseWebVC : UIViewController
 
+@property (nonatomic,strong) NSURLRequest *req;
+
 @end
