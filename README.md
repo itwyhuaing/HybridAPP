@@ -102,5 +102,7 @@
 
 * [iOS 下 JS 与原生 native 互相调用 --- 系列文章](http://www.jianshu.com/p/d19689e0ed83)
 * [HTML meta viewport属性说明 --- H5页面适配到移动端窗口](http://www.cnblogs.com/pigtail/archive/2013/03/15/2961631.html)
+* [iOS下Html页面中input获取焦点弹出键盘时挡住input解决方案—scrollIntoView()
+](http://www.cnblogs.com/wx1993/p/6059668.html)
 
 > 项目中遇到的很多问题多半是因为见得太少，思考的太少。总结过程中，无意间发现早有大牛对该部分内容作了详细总结；贴上地址，方便今后查找。
