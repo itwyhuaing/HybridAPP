@@ -1,13 +1,13 @@
-/*body{*/
-/*    width:100%;*/
-/*    height:100%;*/
-/*}*/
+body{
+    background-color: purple;
+}
 
-/*#ex_content{*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*}*/
 
 .fucntionSetionCL{
-  border-bottom: 1px dash #999;
+  border-bottom: 1px solid #999;
+}
+
+.funcBtnCL{
+    margin:10px 10px;
+
 }
