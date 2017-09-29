@@ -100,6 +100,8 @@
 
 ##### 参考
 
+* [WKWebView简单使用及关于缓存的问题](http://www.cnblogs.com/allencelee/p/6709599.html)
+* [iOS9 WKWebView 缓存清除API](http://www.jianshu.com/p/186a3b236bc9)
 * [iOS 下 JS 与原生 native 互相调用 --- 系列文章](http://www.jianshu.com/p/d19689e0ed83)
 * [HTML meta viewport属性说明 --- H5页面适配到移动端窗口](http://www.cnblogs.com/pigtail/archive/2013/03/15/2961631.html)
 * [iOS下Html页面中input获取焦点弹出键盘时挡住input解决方案—scrollIntoView()
