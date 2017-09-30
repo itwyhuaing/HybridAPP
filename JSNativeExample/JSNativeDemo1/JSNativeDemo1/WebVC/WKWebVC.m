@@ -19,6 +19,8 @@
 
 @implementation WKWebVC
 
+#pragma mark ------------ life
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showUI];
@@ -58,7 +60,7 @@
 
 
 
-
+#pragma mark ------------ WKNavigationDelegate
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     NSLog(@" \n \n %s \n \n",__func__);
@@ -98,6 +100,29 @@
 
 
 
+
+#pragma mark ------------ WKUIDelegate
+
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"alert - 展示 JS 函数"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler();
+    }]];
+    [self presentViewController:alert animated:YES completion:NULL];
+    
+}
+
+
+
+#pragma mark ------------
+#pragma mark ------------
+
+#pragma mark ------------ private method
+
+
 - (void)clickBtn1:(UIButton *)btn{
     NSString *js = @"alerShow()";
     [self.wkweb evaluateJavaScript:js completionHandler:^(id _Nullable info, NSError * _Nullable error) {
@@ -106,8 +131,7 @@
 }
 
 
-
-
+#pragma mark ------------ 懒加载
 
 
 -(WKWebView *)wkweb{
