@@ -15,6 +15,8 @@
 
 @property (nonatomic,strong) UIView *nativeHolder;
 
+@property (nonatomic,strong) UILabel *msgTip;
+
 @end
 
 @implementation WKWebVC
@@ -30,9 +32,9 @@
 - (void)showUI{
     [self.wkweb loadRequest:self.req];
     self.nativeHolder = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                 CGRectGetMaxY(self.wkweb.frame),
-                                                                 self.view.bounds.size.width,
-                                                                 self.view.bounds.size.height/2.0)];
+                                                      CGRectGetMaxY(self.wkweb.frame),
+                                                      self.view.bounds.size.width,
+                                                      self.view.bounds.size.height/2.0)];
     [self.view addSubview:self.nativeHolder];
     
     
@@ -63,8 +65,15 @@
 #pragma mark ------------ WKNavigationDelegate
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
-    NSLog(@" \n \n %s \n \n",__func__);
-    decisionHandler(WKNavigationActionPolicyAllow);
+    
+    NSString *URLString = navigationAction.request.URL.absoluteString;
+    NSLog(@" \n \n %s - http:%@\n \n",__func__,URLString);
+    WKNavigationActionPolicy policy = WKNavigationActionPolicyAllow;
+    if ([URLString hasPrefix:@"http://www.baidu.com"]) {
+        [self showNavTipWithMsg:URLString];
+        policy = WKNavigationActionPolicyCancel;
+    }
+    decisionHandler(policy);
 }
 
 
@@ -130,9 +139,23 @@
     }];
 }
 
+- (void)showNavTipWithMsg:(NSString *)msg{
+    self.msgTip.text = [NSString stringWithFormat:@"拦截:%@",msg];
+    
+    CGRect rect = self.msgTip.frame;
+    rect.origin.y = 0;
+    [UIView animateWithDuration:1.0 animations:^{
+        [self.msgTip setFrame:rect];
+    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.msgTip setFrame:CGRectMake(rect.origin.x, rect.origin.y - rect.size.height, rect.size.width, rect.size.height)];
+        }];
+    });
+    
+}
 
 #pragma mark ------------ 懒加载
-
 
 -(WKWebView *)wkweb{
     if (!_wkweb) {
@@ -145,6 +168,18 @@
         [self.view addSubview:_wkweb];
     }
     return _wkweb;
+}
+
+-(UILabel *)msgTip{
+    if (!_msgTip) {
+        _msgTip = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 36.0)];
+        _msgTip.font = [UIFont systemFontOfSize:18.0];
+        _msgTip.backgroundColor = [UIColor grayColor];
+        _msgTip.textColor = [UIColor whiteColor];
+        _msgTip.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:_msgTip];
+    }
+    return _msgTip;
 }
 
 @end
