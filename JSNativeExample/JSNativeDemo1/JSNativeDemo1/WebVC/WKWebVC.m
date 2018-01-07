@@ -9,7 +9,7 @@
 #import "WKWebVC.h"
 #import <WebKit/WebKit.h>
 
-@interface WKWebVC () <WKUIDelegate,WKNavigationDelegate>
+@interface WKWebVC () <WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 
 @property (nonatomic,strong) WKWebView *wkweb;
 
@@ -25,7 +25,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    CGRect rect = self.view.bounds;
+    rect.size.height /= 2.0;
+    WKWebViewConfiguration *cfg = [[WKWebViewConfiguration alloc] init];
+    _wkweb = [[WKWebView alloc] initWithFrame:rect configuration:cfg];
+    _wkweb.backgroundColor = [UIColor greenColor];
+    _wkweb.navigationDelegate = self;
+    _wkweb.UIDelegate = self;
+    [self.view addSubview:_wkweb];
+    [_wkweb.configuration.userContentController addScriptMessageHandler:self name:@"JSMethod"];
+    
+    
     [self showUI];
+    
+
     
 }
 
@@ -39,16 +52,26 @@
     
     
     CGRect rect = CGRectZero;
+    rect.size.width = [UIScreen mainScreen].bounds.size.width;
+    rect.size.height = 80.0;
+    UILabel *des = [[UILabel alloc] initWithFrame:rect];
+    des.textColor = [UIColor blackColor];
+    des.numberOfLines = 0;
+    des.font = [UIFont systemFontOfSize:15.0];
+    des.text = @" native 调用原生方法及传参给 web ： - (void)evaluateJavaScript:(NSString *)javaScriptString completionHandler:(void (^ _Nullable)(_Nullable id, NSError * _Nullable error))completionHandler";
+    
     rect.size = CGSizeMake(200, 30);
     rect.origin = CGPointMake((self.view.bounds.size.width - rect.size.width) / 2.0,
-                              15);
+                              CGRectGetMaxY(des.frame) + 15.0);
     UIButton *btn1 = [self createButtonWithTitle:@"Native 调起 JS 方法" rect:rect];
     [btn1 addTarget:self action:@selector(clickBtn1:) forControlEvents:UIControlEventTouchUpInside];
-    [self.nativeHolder addSubview:btn1];
     
+    [self.nativeHolder addSubview:des];
+    [self.nativeHolder addSubview:btn1];
     
     self.wkweb.backgroundColor = [UIColor redColor];
     self.nativeHolder.backgroundColor = [UIColor greenColor];
+
 }
 
 - (UIButton *)createButtonWithTitle:(NSString *)title rect:(CGRect)rect{
@@ -60,7 +83,10 @@
     return btn;
 }
 
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.wkweb.configuration.userContentController removeScriptMessageHandlerForName:@"JSMethod"];
+}
 
 #pragma mark ------------ WKNavigationDelegate
 
@@ -126,14 +152,19 @@
 
 
 
-#pragma mark ------------
+#pragma mark ------------ WKScriptMessageHandler
+
+-(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
+    NSLog(@"\n \n %@ \n \n %@ \n \n %@ \n \n",message.body,message.frameInfo,message.name);
+}
+
 #pragma mark ------------
 
 #pragma mark ------------ private method
 
 
 - (void)clickBtn1:(UIButton *)btn{
-    NSString *js = @"alerShow()";
+    NSString *js = @"testDivText()";
     [self.wkweb evaluateJavaScript:js completionHandler:^(id _Nullable info, NSError * _Nullable error) {
         NSLog(@" \n \n info :%@ \n \n",info);
     }];
@@ -156,19 +187,6 @@
 }
 
 #pragma mark ------------ 懒加载
-
--(WKWebView *)wkweb{
-    if (!_wkweb) {
-        CGRect rect = self.view.bounds;
-        rect.size.height /= 2.0;
-        _wkweb = [[WKWebView alloc] initWithFrame:rect];
-        _wkweb.backgroundColor = [UIColor greenColor];
-        _wkweb.navigationDelegate = self;
-        _wkweb.UIDelegate = self;
-        [self.view addSubview:_wkweb];
-    }
-    return _wkweb;
-}
 
 -(UILabel *)msgTip{
     if (!_msgTip) {
