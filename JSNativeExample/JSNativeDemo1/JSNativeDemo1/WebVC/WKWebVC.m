@@ -168,6 +168,14 @@
     [self.wkweb evaluateJavaScript:js completionHandler:^(id _Nullable info, NSError * _Nullable error) {
         NSLog(@" \n \n info :%@ \n \n",info);
     }];
+    
+    NSHTTPCookieStorage *cs = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray *css = [cs cookies];
+    NSHTTPCookie *ck = [[NSHTTPCookie alloc] init];
+    NSLog(@"");
+    
+    
+    
 }
 
 - (void)showNavTipWithMsg:(NSString *)msg{
