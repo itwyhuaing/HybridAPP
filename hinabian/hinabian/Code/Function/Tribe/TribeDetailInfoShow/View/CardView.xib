@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CardView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VC9-QG-RgB">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="iOG-Q3-Nwd"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="r54-X7-Cat"/>
+                    </connections>
+                </tableView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ban-Xh-EXp">
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="上翻至第2页" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vI6-xg-DTf">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="rdG-UY-HE8"/>
+                            </constraints>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="vI6-xg-DTf" secondAttribute="bottom" constant="32" id="PrL-gr-OX8"/>
+                        <constraint firstItem="vI6-xg-DTf" firstAttribute="leading" secondItem="Ban-Xh-EXp" secondAttribute="leading" constant="103" id="c8C-lO-A9k"/>
+                        <constraint firstAttribute="trailing" secondItem="vI6-xg-DTf" secondAttribute="trailing" constant="103" id="jTL-5n-lLf"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="VC9-QG-RgB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5eJ-bi-fT0"/>
+                <constraint firstAttribute="trailing" secondItem="Ban-Xh-EXp" secondAttribute="trailing" id="BoR-Qz-WBq"/>
+                <constraint firstItem="Ban-Xh-EXp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HvA-mP-zX9"/>
+                <constraint firstItem="Ban-Xh-EXp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JWH-W5-1vH"/>
+                <constraint firstAttribute="bottom" secondItem="VC9-QG-RgB" secondAttribute="bottom" id="MQo-hA-92n"/>
+                <constraint firstItem="VC9-QG-RgB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="NIb-VS-lSF"/>
+                <constraint firstAttribute="trailing" secondItem="VC9-QG-RgB" secondAttribute="trailing" id="Yld-eg-1Cj"/>
+                <constraint firstAttribute="bottom" secondItem="Ban-Xh-EXp" secondAttribute="bottom" id="jVF-a0-iZn"/>
+            </constraints>
+            <connections>
+                <outlet property="maskView" destination="Ban-Xh-EXp" id="qBx-5G-n4W"/>
+                <outlet property="noticeTextField" destination="vI6-xg-DTf" id="Q13-HL-IXp"/>
+                <outlet property="tableView" destination="VC9-QG-RgB" id="M7S-J8-woN"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="54.5"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="A80-sg-b5C" customClass="TribeShowHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="133"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CCO-Xl-cHS" userLabel="tribeImgView">
+                    <rect key="frame" x="10" y="13" width="67" height="67"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="67" id="qoW-lS-Irt"/>
+                        <constraint firstAttribute="width" constant="67" id="xDC-cd-OEe"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdt-L5-Vby" userLabel="tribeNameLabel">
+                    <rect key="frame" x="87" y="15" width="120" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="cLp-63-MuD"/>
+                        <constraint firstAttribute="width" constant="120" id="p0W-oa-crV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHt-aD-icK" userLabel="descLabel">
+                    <rect key="frame" x="87" y="62" width="223" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="pK9-KS-LBm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpu-lc-yq2" userLabel="tribeHostView">
+                    <rect key="frame" x="10" y="95" width="300" height="14"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版主:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gng-cL-t8Y" userLabel="tribeHostTitle">
+                            <rect key="frame" x="0.0" y="0.0" width="35" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="35" id="WOZ-t5-JUr"/>
+                                <constraint firstAttribute="height" constant="14" id="tMs-RL-35j"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iz2-cv-pvf" userLabel="tribeHostNames">
+                            <rect key="frame" x="35" y="0.0" width="265" height="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="1qD-IX-1s3"/>
+                        <constraint firstItem="Iz2-cv-pvf" firstAttribute="leading" secondItem="Gng-cL-t8Y" secondAttribute="trailing" id="CSB-Gw-L47"/>
+                        <constraint firstAttribute="bottom" secondItem="Iz2-cv-pvf" secondAttribute="bottom" id="HTP-VK-DGk"/>
+                        <constraint firstItem="Iz2-cv-pvf" firstAttribute="top" secondItem="fpu-lc-yq2" secondAttribute="top" id="Osi-wm-G33"/>
+                        <constraint firstItem="Gng-cL-t8Y" firstAttribute="leading" secondItem="fpu-lc-yq2" secondAttribute="leading" id="b9D-My-Ytb"/>
+                        <constraint firstAttribute="trailing" secondItem="Iz2-cv-pvf" secondAttribute="trailing" id="fcJ-OM-fki"/>
+                        <constraint firstItem="Gng-cL-t8Y" firstAttribute="top" secondItem="fpu-lc-yq2" secondAttribute="top" id="rKd-oE-8ur"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSd-fX-GDC" userLabel="gapLabel">
+                    <rect key="frame" x="0.0" y="124" width="320" height="9"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bD9-SS-enc" userLabel="careBtn">
+                    <rect key="frame" x="262" y="20" width="48" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="9Qs-PW-BLe"/>
+                        <constraint firstAttribute="width" constant="48" id="u8z-Ly-TdZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5e-vr-znp" userLabel="tribeNum">
+                    <rect key="frame" x="87" y="42" width="38" height="11"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="11" id="Bv6-7o-u55"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="11" id="X6P-AD-Vmg"/>
+                        <constraint firstAttribute="width" constant="38" id="vGl-uV-FCo"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="38" id="y2k-Tb-6Jm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                    <state key="normal" title="9999" image="tribe_show_tribeNum">
+                        <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJS-mp-Z17" userLabel="careNum">
+                    <rect key="frame" x="140" y="42" width="38" height="11"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="11" id="JPu-cn-vhf"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="11" id="X0F-R3-wUb"/>
+                        <constraint firstAttribute="width" constant="38" id="gln-A1-AGF"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="38" id="vSk-iV-vlM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                    <state key="normal" title="9999" image="tribe_care">
+                        <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="bD9-SS-enc" firstAttribute="top" secondItem="A80-sg-b5C" secondAttribute="top" constant="20" id="5xw-Lv-vR7"/>
+                <constraint firstItem="fpu-lc-yq2" firstAttribute="top" secondItem="bHt-aD-icK" secondAttribute="bottom" constant="15" id="DiL-aQ-Khg"/>
+                <constraint firstItem="bHt-aD-icK" firstAttribute="leading" secondItem="qdt-L5-Vby" secondAttribute="leading" id="FQS-bA-nSC"/>
+                <constraint firstAttribute="trailing" secondItem="kSd-fX-GDC" secondAttribute="trailing" id="Fvr-xv-jhi"/>
+                <constraint firstAttribute="bottom" secondItem="kSd-fX-GDC" secondAttribute="bottom" id="Mm8-Tn-bTK"/>
+                <constraint firstItem="P5e-vr-znp" firstAttribute="leading" secondItem="CCO-Xl-cHS" secondAttribute="trailing" constant="10" id="Tru-eR-nHK"/>
+                <constraint firstItem="TJS-mp-Z17" firstAttribute="top" secondItem="qdt-L5-Vby" secondAttribute="bottom" constant="9" id="VBg-Ih-sjt"/>
+                <constraint firstItem="qdt-L5-Vby" firstAttribute="top" secondItem="A80-sg-b5C" secondAttribute="top" constant="15" id="X64-jg-6ZK"/>
+                <constraint firstItem="qdt-L5-Vby" firstAttribute="leading" secondItem="CCO-Xl-cHS" secondAttribute="trailing" constant="10" id="ZQd-CL-SkB"/>
+                <constraint firstItem="fpu-lc-yq2" firstAttribute="leading" secondItem="A80-sg-b5C" secondAttribute="leading" constant="10" id="b26-2M-kOm"/>
+                <constraint firstAttribute="trailing" secondItem="fpu-lc-yq2" secondAttribute="trailing" constant="10" id="b3z-Yq-gN8"/>
+                <constraint firstAttribute="trailing" secondItem="bD9-SS-enc" secondAttribute="trailing" constant="10" id="bWi-PQ-VJi"/>
+                <constraint firstItem="P5e-vr-znp" firstAttribute="top" secondItem="qdt-L5-Vby" secondAttribute="bottom" constant="9" id="cW5-gf-Kyz"/>
+                <constraint firstItem="kSd-fX-GDC" firstAttribute="leading" secondItem="A80-sg-b5C" secondAttribute="leading" id="dvT-RW-ARz"/>
+                <constraint firstItem="CCO-Xl-cHS" firstAttribute="top" secondItem="A80-sg-b5C" secondAttribute="top" constant="13" id="ebZ-yb-4cu"/>
+                <constraint firstItem="bHt-aD-icK" firstAttribute="top" secondItem="TJS-mp-Z17" secondAttribute="bottom" constant="9" id="gcx-dX-r2s"/>
+                <constraint firstItem="TJS-mp-Z17" firstAttribute="leading" secondItem="P5e-vr-znp" secondAttribute="trailing" constant="15" id="k1a-YF-hbD"/>
+                <constraint firstAttribute="trailing" secondItem="bHt-aD-icK" secondAttribute="trailing" constant="10" id="kLI-Gd-2re"/>
+                <constraint firstItem="kSd-fX-GDC" firstAttribute="top" secondItem="fpu-lc-yq2" secondAttribute="bottom" constant="15" id="oif-pz-Zjb"/>
+                <constraint firstItem="CCO-Xl-cHS" firstAttribute="leading" secondItem="A80-sg-b5C" secondAttribute="leading" constant="10" id="wjF-uC-ng4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="careBtn" destination="bD9-SS-enc" id="0X9-WQ-rea"/>
+                <outlet property="cares" destination="TJS-mp-Z17" id="tQH-2a-yKl"/>
+                <outlet property="descLabel" destination="bHt-aD-icK" id="jUH-ca-aJH"/>
+                <outlet property="gapLabel" destination="kSd-fX-GDC" id="TNw-zA-aek"/>
+                <outlet property="gapTopSpaceConstraint" destination="oif-pz-Zjb" id="AdY-PY-N4c"/>
+                <outlet property="posts" destination="P5e-vr-znp" id="qOT-6W-mYh"/>
+                <outlet property="tribeHostNames" destination="Iz2-cv-pvf" id="xwd-xW-xhA"/>
+                <outlet property="tribeHostTitle" destination="Gng-cL-t8Y" id="zpt-cZ-M9P"/>
+                <outlet property="tribeHostTitleHeightConstraint" destination="tMs-RL-35j" id="2uf-cz-RpA"/>
+                <outlet property="tribeHostView" destination="fpu-lc-yq2" id="16v-jN-mFv"/>
+                <outlet property="tribeHostViewHeightConstranit" destination="1qD-IX-1s3" id="5U3-T8-NIk"/>
+                <outlet property="tribeImgView" destination="CCO-Xl-cHS" id="8WG-PS-biw"/>
+                <outlet property="tribeImgViewConstraint" destination="qoW-lS-Irt" id="f9i-bC-6kX"/>
+                <outlet property="tribeNameLabel" destination="qdt-L5-Vby" id="T2e-u5-esh"/>
+            </connections>
+            <point key="canvasLocation" x="174" y="-291"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="tribe_care" width="9" height="8"/>
+        <image name="tribe_show_tribeNum" width="9" height="9"/>
+    </resources>
+</document>

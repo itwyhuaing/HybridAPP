@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+86" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoP-mi-88N" userLabel="countryCode">
+                    <rect key="frame" x="12" y="6" width="42" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="Ied-Ht-jdV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdZ-fb-IpX" userLabel="line">
+                    <rect key="frame" x="12" y="43" width="296" height="1"/>
+                    <color key="backgroundColor" red="0.84312281850000004" green="0.84312281850000004" blue="0.84312281850000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="0e2-hK-2Pi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="xNz-OH-n23" userLabel="flagImg">
+                    <rect key="frame" x="57" y="17" width="9" height="5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="9" id="P5J-jD-tlq"/>
+                        <constraint firstAttribute="height" constant="5" id="aGo-Km-VyH"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47x-0h-PEc" userLabel="confirmNumButton">
+                    <rect key="frame" x="233" y="8" width="75" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="meB-A2-5uY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="获取验证码"/>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GnG-JZ-JFp" userLabel="phoneNumInput">
+                    <rect key="frame" x="97" y="2" width="136" height="39"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DX4-RK-Ktz" userLabel="nationCodeBtn">
+                    <rect key="frame" x="0.0" y="0.0" width="66" height="33"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="47x-0h-PEc" firstAttribute="leading" secondItem="GnG-JZ-JFp" secondAttribute="trailing" id="DYl-DA-X5L"/>
+                <constraint firstItem="bdZ-fb-IpX" firstAttribute="top" secondItem="47x-0h-PEc" secondAttribute="bottom" constant="10" id="Msv-zw-wcM"/>
+                <constraint firstItem="bdZ-fb-IpX" firstAttribute="top" secondItem="GnG-JZ-JFp" secondAttribute="bottom" constant="2" id="NTp-kw-fLG"/>
+                <constraint firstItem="47x-0h-PEc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="NbY-o1-eKu"/>
+                <constraint firstItem="aoP-mi-88N" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="O6l-BZ-Tj5"/>
+                <constraint firstItem="xNz-OH-n23" firstAttribute="leading" secondItem="aoP-mi-88N" secondAttribute="trailing" constant="3" id="OOS-6f-EFV"/>
+                <constraint firstItem="bdZ-fb-IpX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="RaC-0A-7Zf"/>
+                <constraint firstItem="xNz-OH-n23" firstAttribute="centerY" secondItem="aoP-mi-88N" secondAttribute="centerY" id="UyC-Lb-YSN"/>
+                <constraint firstItem="DX4-RK-Ktz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XfZ-e5-ZDn"/>
+                <constraint firstItem="xNz-OH-n23" firstAttribute="trailing" secondItem="DX4-RK-Ktz" secondAttribute="trailing" id="ZyN-WK-DQW"/>
+                <constraint firstItem="bdZ-fb-IpX" firstAttribute="top" secondItem="DX4-RK-Ktz" secondAttribute="bottom" constant="10" id="bXw-Ap-FUj"/>
+                <constraint firstAttribute="trailing" secondItem="47x-0h-PEc" secondAttribute="trailing" constant="12" id="gGy-iJ-PSr"/>
+                <constraint firstItem="bdZ-fb-IpX" firstAttribute="top" secondItem="aoP-mi-88N" secondAttribute="bottom" constant="10" id="gPy-Uu-XXc"/>
+                <constraint firstItem="DX4-RK-Ktz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hyB-Hz-jCc"/>
+                <constraint firstItem="aoP-mi-88N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="jpp-MP-h2X"/>
+                <constraint firstItem="GnG-JZ-JFp" firstAttribute="leading" secondItem="xNz-OH-n23" secondAttribute="trailing" constant="31" id="uyA-ef-6oN"/>
+                <constraint firstAttribute="trailing" secondItem="bdZ-fb-IpX" secondAttribute="trailing" constant="12" id="xib-ZB-CJv"/>
+                <constraint firstAttribute="bottom" secondItem="bdZ-fb-IpX" secondAttribute="bottom" id="xpC-Cq-nJD"/>
+                <constraint firstItem="GnG-JZ-JFp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="yLL-cL-yBO"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="login_arrow" width="9" height="5"/>
+    </resources>
+</document>

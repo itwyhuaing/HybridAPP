@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="NQt-4d-ily">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Fy-6O-MHd">
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhuce_icon_phone_normal" translatesAutoresizingMaskIntoConstraints="NO" id="lJS-c7-vJH">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="22" id="5De-4F-cnz"/>
+                        <constraint firstAttribute="height" constant="22" id="Rkx-Gy-55a"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="3Fy-6O-MHd" firstAttribute="bottom" secondItem="NQt-4d-ily" secondAttribute="bottomMargin" constant="2" id="4gS-ch-9uf"/>
+                <constraint firstItem="lJS-c7-vJH" firstAttribute="leading" secondItem="NQt-4d-ily" secondAttribute="leadingMargin" id="7A1-oA-n1H"/>
+                <constraint firstAttribute="trailing" secondItem="3Fy-6O-MHd" secondAttribute="trailing" constant="20" id="CAj-eD-Kfo"/>
+                <constraint firstItem="3Fy-6O-MHd" firstAttribute="leading" secondItem="lJS-c7-vJH" secondAttribute="trailing" constant="24" id="W7T-53-fEa"/>
+                <constraint firstItem="3Fy-6O-MHd" firstAttribute="top" secondItem="NQt-4d-ily" secondAttribute="top" constant="8" id="qXb-m0-pVc"/>
+                <constraint firstItem="lJS-c7-vJH" firstAttribute="centerY" secondItem="NQt-4d-ily" secondAttribute="centerY" constant="1" id="uzb-1q-mlJ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="364" y="193"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="zhuce_icon_phone_normal" width="19" height="19"/>
+    </resources>
+</document>

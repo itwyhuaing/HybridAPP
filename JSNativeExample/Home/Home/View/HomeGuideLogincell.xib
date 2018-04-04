@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="HomeGuideLogincell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="145"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElA-87-A3C" userLabel="topGapLabel">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="9"/>
+                        <color key="backgroundColor" red="0.84312281850000004" green="0.84312281850000004" blue="0.84312281850000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="9" id="WGJ-9J-3md"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pp-Jv-iJF" userLabel="loginBtn">
+                        <rect key="frame" x="36" y="46" width="249" height="38"/>
+                        <color key="backgroundColor" red="0.2418576858" green="0.75888021279999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <state key="normal" title="立即登录">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录后，推荐更准确哦" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHq-R7-XaC" userLabel="loginLabel">
+                        <rect key="frame" x="0.0" y="88" width="320" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12.5" id="RWK-0H-5jw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHA-fg-A63" userLabel="bottomGapLabel">
+                        <rect key="frame" x="0.0" y="135" width="320" height="9"/>
+                        <color key="backgroundColor" red="0.84312281850000004" green="0.84312281850000004" blue="0.84312281850000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="9" id="HMX-zf-BgP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="AHA-fg-A63" secondAttribute="bottom" id="2T8-7V-Sab"/>
+                    <constraint firstItem="ElA-87-A3C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7lN-jt-9rf"/>
+                    <constraint firstItem="AHA-fg-A63" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7vF-Ln-Ihy"/>
+                    <constraint firstItem="1pp-Jv-iJF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="35.5" id="Ali-VP-V03"/>
+                    <constraint firstAttribute="trailing" secondItem="XHq-R7-XaC" secondAttribute="trailing" id="BiX-BF-aS1"/>
+                    <constraint firstItem="ElA-87-A3C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="EaR-NC-tka"/>
+                    <constraint firstItem="1pp-Jv-iJF" firstAttribute="top" secondItem="ElA-87-A3C" secondAttribute="bottom" constant="37" id="Hmr-Xf-uer"/>
+                    <constraint firstItem="AHA-fg-A63" firstAttribute="top" secondItem="XHq-R7-XaC" secondAttribute="bottom" constant="35" id="LrL-UV-7W1"/>
+                    <constraint firstItem="XHq-R7-XaC" firstAttribute="top" secondItem="1pp-Jv-iJF" secondAttribute="bottom" constant="4" id="MHb-Pj-oLh"/>
+                    <constraint firstAttribute="trailing" secondItem="AHA-fg-A63" secondAttribute="trailing" id="Noa-xW-hIX"/>
+                    <constraint firstAttribute="trailing" secondItem="1pp-Jv-iJF" secondAttribute="trailing" constant="35.5" id="YNP-Br-cIx"/>
+                    <constraint firstItem="XHq-R7-XaC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bR4-zL-ZgD"/>
+                    <constraint firstAttribute="trailing" secondItem="ElA-87-A3C" secondAttribute="trailing" id="yFF-EE-1WA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bottomGapLabel" destination="AHA-fg-A63" id="5zu-Y6-jci"/>
+                <outlet property="loginBtn" destination="1pp-Jv-iJF" id="iuY-5r-2dD"/>
+                <outlet property="loginLabel" destination="XHq-R7-XaC" id="OLa-IC-kkz"/>
+                <outlet property="topGapLabel" destination="ElA-87-A3C" id="JiR-oy-lws"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="53.5"/>
+        </tableViewCell>
+    </objects>
+</document>

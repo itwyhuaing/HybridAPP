@@ -1,0 +1,365 @@
+//
+//  HotIMProjectViewController.m
+//  hinabian
+//
+//  Created by 何松泽 on 2017/8/21.
+//  Copyright © 2017年 &#20313;&#22362;. All rights reserved.
+//
+
+#import "HotIMProjectViewController.h"
+#import "SingleProjVisaView.h"
+#import "DataFetcher.h"
+#import "ScrollBannerView.h"
+#import "IMHomeVisaModel.h"
+#import "IMHomeBannerModel.h"
+#import "IMHomeProjModel.h"
+#import "TribeDetailInfoViewController.h"
+#import "SWKTribeShowViewController.h"
+#import "IMHomeVisaCell.h"
+#import "IMProjectVisaCell.h"
+#import "RefreshControl.h"
+#import "HNBPv.h"
+
+#define BANNER_HEIGHT   169.f
+
+enum IMHotHome_Item_Index
+{
+    IM_HOME_SHUFFLING_IMAGE = 0,
+    IM_HOME_EMITY_ONE = 1,
+    IM_HOME_PROJECT_TITLE,
+    IM_HOME_EMITY_TWO,
+    IM_HOME_VISA_TITLE,
+};
+
+@interface HotIMProjectViewController ()<UITableViewDelegate,UITableViewDataSource,ScrollBannerViewDelegate,RefreshControlDelegate>
+
+@property (nonatomic,strong) RefreshControl *refreshControl;
+
+@property (nonatomic, strong)UITableView *tableView;
+
+@property (nonatomic, strong)ScrollBannerView *yhbanner;
+
+@property (nonatomic, strong)SingleProjVisaView *projView;
+@property (nonatomic, strong)SingleProjVisaView *visaView;
+
+@property (nonatomic, strong)NSArray *bannerDatas;
+@property (nonatomic, strong)NSMutableArray *bannerUrls;
+@property (nonatomic, strong)NSArray *projDatas;
+@property (nonatomic, strong)NSArray *visaDatas;
+
+@end
+
+@implementation HotIMProjectViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    _bannerDatas    = [[NSArray alloc] init];
+    _bannerUrls     = [[NSMutableArray alloc] init];
+    _projDatas      = [[NSArray alloc] init];
+    _visaDatas      = [[NSArray alloc] init];
+    
+    // banner 控件
+    _yhbanner = [[ScrollBannerView alloc] initWithFrame:CGRectMake(0,
+                                                                   0,
+                                                                   SCREEN_WIDTH,
+                                                                   BANNER_HEIGHT * (SCREEN_WIDTH/SCREEN_WIDTH_5S)) autoPlayTimeInterval:5];
+    _yhbanner.delegate = (id)self;
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - SCREEN_STATUSHEIGHT - SCREEN_NAVHEIGHT - 52.f)];
+    self.tableView.delegate = (id)self;
+    self.tableView.dataSource = (id)self;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.alwaysBounceVertical = YES;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    [self.tableView registerClass:[IMHomeVisaCell class] forCellReuseIdentifier:cellNib_IMHomeVisaCell];
+//    [self.tableView registerClass:[IMProjectVisaCell class] forCellReuseIdentifier:cellNib_IMProjectVisaCell];
+    [self.view addSubview:self.tableView];
+    
+    // 刷新控件
+    _refreshControl=[[RefreshControl alloc] initWithScrollView:self.tableView topOffset:0.0 delegate:self];
+    _refreshControl.topEnabled=YES;
+    _refreshControl.bottomEnabled=NO;
+    
+    [self refreshData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //打点记录
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval time=[dat timeIntervalSince1970];
+    [HNBPv beginLogPageView:[NSString stringWithFormat:@"%@_%@",[self class],_f_id] Time:time IsH5:false];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //退出打点记录
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval time=[dat timeIntervalSince1970];
+    [HNBPv endLogPageView:[NSString stringWithFormat:@"%@_%@",[self class],_f_id] Time:time IsH5:false];
+}
+
+#pragma tableview代理
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *returnCellPtr = [[UITableViewCell alloc] init];
+    if (IM_HOME_SHUFFLING_IMAGE == indexPath.row) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeBannerCell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HomeBannerCell"];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [cell addSubview:self.yhbanner];
+        }
+        [self.yhbanner reFreshBannerViewWithDataSource:_bannerUrls];
+        
+        returnCellPtr = cell;
+        
+    }
+    else if (IM_HOME_EMITY_ONE == indexPath.row || IM_HOME_EMITY_TWO + _projDatas.count == indexPath.row) {
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+        cell.backgroundColor = [UIColor DDR245_G245_B245ColorWithalph:1.0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        returnCellPtr = cell;
+    }
+    else if (IM_HOME_PROJECT_TITLE == indexPath.row) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeTitleCell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HomeTitleCell"];
+            cell.backgroundColor = [UIColor whiteColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            CGRect rect = cell.bounds;
+            rect.origin.x = 32*SCREEN_SCALE;
+            rect.size.width = SCREEN_WIDTH - 32*SCREEN_SCALE * 2;
+            rect.size.height = 25.f*SCREEN_SCALE;
+            rect.origin.y = 25.f;
+            UIImageView *bgImage = [[UIImageView alloc] initWithFrame:rect];
+            [bgImage setImage:[UIImage imageNamed:@"im_title_bg"]];
+            [cell addSubview:bgImage];
+            
+            rect.origin.x = 3*SCREEN_SCALE;
+            rect.size.width = SCREEN_WIDTH - 3*SCREEN_SCALE;
+            rect.size.height = 20.f*SCREEN_SCALE;
+            rect.origin.y = 12.f;
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:rect];
+            titleLabel.textAlignment = NSTextAlignmentCenter;
+            titleLabel.text = [NSString stringWithFormat:@"%@移民项目",self.f_title];
+            [titleLabel setFont:[UIFont boldSystemFontOfSize:FONT_UI36PX]];
+            [cell addSubview:titleLabel];
+        }
+        returnCellPtr = cell;
+    }
+    /*项目数据*/
+    else if (indexPath.row > IM_HOME_PROJECT_TITLE && indexPath.row < IM_HOME_VISA_TITLE + _projDatas.count) {
+        IMProjectVisaCell *cell = [tableView dequeueReusableCellWithIdentifier:cellNib_IMProjectVisaCell];
+        if (cell == nil) {
+            cell = [[IMProjectVisaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellNib_IMProjectVisaCell];
+        }
+        NSInteger index = indexPath.row - IM_HOME_PROJECT_TITLE - 1;
+        IMHomeProjModel *model = _projDatas[index];
+        [cell setProjModel:model];
+        
+        returnCellPtr = cell;
+    }
+    else if (IM_HOME_VISA_TITLE + _projDatas.count == indexPath.row) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VisaTitleCell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VisaTitleCell"];
+            cell.backgroundColor = [UIColor whiteColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            CGRect rect = cell.bounds;
+            rect.origin.x = 32*SCREEN_SCALE;
+            rect.size.width = SCREEN_WIDTH - 32*SCREEN_SCALE * 2;
+            rect.size.height = 25.f*SCREEN_SCALE;
+            rect.origin.y = 25.f;
+            UIImageView *bgImage = [[UIImageView alloc] initWithFrame:rect];
+            [bgImage setImage:[UIImage imageNamed:@"im_title_bg"]];
+            [cell addSubview:bgImage];
+            
+            rect.origin.x = 3*SCREEN_SCALE;
+            rect.size.width = SCREEN_WIDTH - 3*SCREEN_SCALE;
+            rect.size.height = 20.f*SCREEN_SCALE;
+            rect.origin.y = 12.f;
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:rect];
+            titleLabel.text = [NSString stringWithFormat:@"%@签证",self.f_title];
+            titleLabel.textAlignment = NSTextAlignmentCenter;
+            [titleLabel setFont:[UIFont boldSystemFontOfSize:FONT_UI36PX]];
+            [cell addSubview:titleLabel];
+        }
+        returnCellPtr = cell;
+    }
+    /*签证数据*/
+    else if (indexPath.row > IM_HOME_VISA_TITLE + _projDatas.count) {
+        
+        IMHomeVisaCell *cell = [tableView dequeueReusableCellWithIdentifier:cellNib_IMHomeVisaCell];
+        if (cell == nil) {
+            cell = [[IMHomeVisaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellNib_IMHomeVisaCell];
+        }
+        NSInteger index = indexPath.row - _projDatas.count - IM_HOME_VISA_TITLE - 1;
+        IMHomeVisaModel *model = _visaDatas[index];
+        [cell setVisaModel:model];
+        returnCellPtr = cell;
+    }
+
+    return returnCellPtr;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //签证数目为0时隐藏签证title
+    //项目数目为0时改国家下架，无需处理
+    if (_visaDatas.count > 0) {
+        return IM_HOME_VISA_TITLE + _projDatas.count + _visaDatas.count + 1;
+    } else {
+        return IM_HOME_PROJECT_TITLE + _projDatas.count + _visaDatas.count + 1;
+    }
+    return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == IM_HOME_SHUFFLING_IMAGE) {
+        return BANNER_HEIGHT*SCREEN_SCALE;
+    }else if (indexPath.row == IM_HOME_EMITY_ONE || indexPath.row == IM_HOME_EMITY_TWO + _projDatas.count) {
+        return 10.f;
+    }else if (indexPath.row == IM_HOME_PROJECT_TITLE || IM_HOME_VISA_TITLE + _projDatas.count == indexPath.row) {
+        return 60.f*SCREEN_SCALE;
+    }
+    return 250.f * SCREEN_SCALE;
+}
+
+-(void)scrollBannerView:(ScrollBannerView *)banner didSelectedImageViewAtIndex:(NSInteger)index {
+    if (index < 1 || index > _bannerDatas.count) {
+        return;
+    }
+    NSString* tmpString = Nil;
+    IMHomeBannerModel * f = self.bannerDatas[index - 1];
+    tmpString = f.url;
+    
+    /*链接不存在*/
+    if ([tmpString isEqualToString:@""] || !tmpString) {
+        return;
+    }
+    /*点击上报*/
+    if (self.f_id) {
+        NSDictionary *dic = @{@"f_national" : self.f_id,
+                              @"f_pos"      : [NSString stringWithFormat:@"%lu",(long)index],
+                              @"f_url"      : f.url};
+        [HNBClick event:@"172021" Content:dic];
+    }
+
+    
+    if ([[HNBWebManager defaultInstance] isHinabianThemeDetailWithURLString:tmpString]) {
+        
+        NSString *isNativeString = [HNBUtils sandBoxGetInfo:[NSString class] forKey:TRIBEDETAILTHEME_NATIVEUI_WEB];
+        if ([isNativeString isEqualToString:@"1"]) {
+            
+            TribeDetailInfoViewController *vc = [[TribeDetailInfoViewController alloc] init];
+            vc.URL = [[NSURL alloc] withOutNilString:tmpString];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        } else {
+            
+            SWKTribeShowViewController *vc = [[SWKTribeShowViewController alloc] init];
+            vc.URL = [[NSURL alloc] withOutNilString:tmpString];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+        
+    }else{
+        
+        SWKCommonWebVC *vc = [[SWKCommonWebVC alloc] init];
+        vc.URL = [NSURL URLWithString:tmpString];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    
+    
+
+}
+
+#pragma mark ------ RefreshControlDelegate
+
+- (void)refreshControl:(RefreshControl *)refreshControl didEngageRefreshDirection:(RefreshDirection)direction{
+    
+    if (direction == RefreshDirectionTop) { // 顶部下拉刷新
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self refreshData];
+            [_refreshControl finishRefreshingDirection:RefreshDirectionTop isEmpty:YES];
+        });
+        return;
+        
+    } else { // 底部上拉加载
+        [refreshControl finishRefreshingDirection:direction isEmpty:YES];
+    }
+    
+}
+
+- (void)refreshData {
+
+    [DataFetcher getInfoByTabInIMProjectHomeWithID:_f_id withSucceedHandler:^(id JSON) {
+        NSDictionary *tmpDic = JSON;
+        if ([tmpDic valueForKey:IMHOME_VISA]) {
+            _visaDatas = [tmpDic valueForKey:IMHOME_VISA];
+        }
+        if ([tmpDic valueForKey:IMHOME_PROJECT]) {
+            _projDatas = [tmpDic valueForKey:IMHOME_PROJECT];
+        }
+        if ([tmpDic valueForKey:IMHOME_BANNER]) {
+            _bannerDatas = [tmpDic valueForKey:IMHOME_BANNER];
+            _bannerUrls = [NSMutableArray array];
+            for (int i = 0;i < _bannerDatas.count;i++) {
+                IMHomeBannerModel *model = _bannerDatas[i];
+                [_bannerUrls addObject:model.img_url];
+            }
+        }
+        [self.tableView reloadData];
+    } withFailHandler:^(id error) {
+        
+    }];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSLog(@" \n \n %s \n \n",__FUNCTION__);
+    if (indexPath.row > IM_HOME_PROJECT_TITLE && indexPath.row < IM_HOME_VISA_TITLE + _projDatas.count) {
+        NSInteger index = indexPath.row - IM_HOME_PROJECT_TITLE - 1;
+        IMHomeProjModel *model = _projDatas[index];
+        /*数据上报*/
+        if (self.f_id && model.proj_id) {
+            NSDictionary *dic = @{@"f_national" : self.f_id,
+                                  @"f_project"  : model.proj_id};
+            [HNBClick event:@"172041" Content:dic];
+        }
+        
+        SWKCommonWebVC *vc = [[SWKCommonWebVC alloc] init];
+        vc.URL = [NSURL URLWithString:model.url];
+        [self.navigationController pushViewController:vc animated:TRUE];
+    }else if (indexPath.row > IM_HOME_VISA_TITLE + _projDatas.count) {
+        NSInteger index = indexPath.row - _projDatas.count - IM_HOME_VISA_TITLE - 1;
+        IMHomeVisaModel *model = _visaDatas[index];
+    
+        /*数据上报*/
+        if (self.f_id && model.visa_id) {
+            NSDictionary *dic = @{@"f_national" : self.f_id,
+                                  @"f_project"  : model.visa_id};
+            [HNBClick event:@"172042" Content:dic];
+        }
+
+        SWKCommonWebVC *vc = [[SWKCommonWebVC alloc] init];
+        vc.URL = [NSURL URLWithString:model.url];
+        [self.navigationController pushViewController:vc animated:TRUE];
+    }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end
+
+
+
+
