@@ -9,6 +9,9 @@
 #import "TableVC.h"
 #import "UIBaseFuncVC.h"
 #import "InterceptURLVC.h"
+#import "JSCoreVC.h"
+#import "JSBridgeVC.h"
+#import "MsgHandlerVC.h"
 
 @interface TableVC ()
 
@@ -51,12 +54,26 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIBaseFuncVC *vc;
-    if (indexPath.row == 0) {
-        vc = [[InterceptURLVC alloc] init];
-        
+    NSInteger location = FunctionInterceptVCType + indexPath.row;
+    switch (location) {
+        case FunctionInterceptVCType:
+            vc = [[InterceptURLVC alloc] init];
+            break;
+        case FunctionJSCoreVCType:
+            vc = [[JSCoreVC alloc] init];
+            break;
+        case FunctionJSBridgeVCType:
+            vc = [[JSBridgeVC alloc] init];
+            break;
+        case FunctionMsgHandlerVCType:
+            vc = [[MsgHandlerVC alloc] init];
+            break;
+            
+        default:
+            break;
     }
-    
     [self.navigationController pushViewController:vc animated:TRUE];
+    
 }
 
 /*
