@@ -13,6 +13,7 @@ typedef enum : NSUInteger {
     FunctionJSCoreVCType,
     FunctionJSBridgeVCType,
     FunctionMsgHandlerVCType,
+    FunctionWKDemoShowType,
 } FunctionVCType;
 
 @interface TableVC : UITableViewController

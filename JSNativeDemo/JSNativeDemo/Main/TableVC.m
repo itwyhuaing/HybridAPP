@@ -7,6 +7,7 @@
 //
 
 #import "TableVC.h"
+#import "WKWebVC.h"
 #import "UIBaseFuncVC.h"
 #import "InterceptURLVC.h"
 #import "JSCoreVC.h"
@@ -23,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray *tmpData = @[@"URL 拦截",@"JavaScriptCore ",@"WebViewJavascriptBridge",@"MessageHandler - WK 特有"];
+    NSArray *tmpData = @[@"URL 拦截",@"JavaScriptCore ",@"WebViewJavascriptBridge",@"MessageHandler - WK 特有",@"WKDemo 效果"];
     _dataSource = [[NSMutableArray alloc] initWithArray:tmpData];
   
 }
@@ -67,6 +68,9 @@
             break;
         case FunctionMsgHandlerVCType:
             vc = [[MsgHandlerVC alloc] init];
+            break;
+        case FunctionWKDemoShowType:
+            vc = [[WKWebVC alloc] init];
             break;
             
         default:
