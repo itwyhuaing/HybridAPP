@@ -102,104 +102,129 @@
 
 ###### WKNavigationDelegate
 
+```
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler;
+```
 > 在发送请求之前，决定是否跳转
 
 
+```
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler;
-> 在收到响应后，决定是否跳转和发送请求之前那个允许配套使用
+```
+> 在收到响应后，决定是否跳转，该方法与 decidePolicyForNavigationAction（发送请求之前是否允许跳转） 配套使用
 
 
-
+```
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation;
+```
 > 页面开始加载时调用
 
 
-
+```
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(null_unspecified WKNavigation *)navigation;
+```
 > 接收到服务器跳转请求之后调用
 
 
-
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error;
-> d
-
-
-
+```
 - (void)webView:(WKWebView *)webView didCommitNavigation:(null_unspecified WKNavigation *)navigation;
+```
 > 当内容开始返回时调用
 
 
-
+```
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation;
+```
 > 页面加载完成之后调用
 
 
+```
+/**
+@abstract Invoked when an error occurs while starting to load data for the main frame.
+*/
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error;
+```
+> 当开始为主框架加载数据是发生错误时调用  --- 自己翻译
 
+
+```
+/**
+  @abstract Invoked when an error occurs during a committed main frame navigation.
+*/
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error;
-> 页面加载失败之后调用
+```
+> 在渲染数据到主框架上时发生错误时调用  --- 自己翻译
 
 
-
+```
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler;
+```
 > 身份验证
 
-
+```
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView API_AVAILABLE(macosx(10.11), ios(9.0));
+```
 > WKWebView 加载操作终止时调用
 
 
 
 ###### WKUIDelegate
 
+```
 - (nullable WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures;
-> W
+```
+> 创建一个新的WebView
 
 
-
-
+```
 - (void)webViewDidClose:(WKWebView *)webView API_AVAILABLE(macosx(10.11), ios(9.0));
+```
 > W
 
-
-
-
+```
+/**
+*  @param webView           实现该代理的webview
+*  @param message           警告框中的内容
+*  @param frame             主窗口
+*  @param completionHandler 警告框消失调用
+*/
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler;
-> W
+```
+> web界面中有弹出警告框时调用
 
 
-
-
+```
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler;
+```
 > W
 
-
-
-
+```
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable result))completionHandler;
+```
 > W
 
-
-
-
+```
 - (BOOL)webView:(WKWebView *)webView shouldPreviewElement:(WKPreviewElementInfo *)elementInfo API_AVAILABLE(ios(10.0));
+```
 > W
 
-
-
-
+```
 - (nullable UIViewController *)webView:(WKWebView *)webView previewingViewControllerForElement:(WKPreviewElementInfo *)elementInfo defaultActions:(NSArray<id <WKPreviewActionItem>> *)previewActions API_AVAILABLE(ios(10.0));
+```
 > W
 
 
-
-
+```
 - (void)webView:(WKWebView *)webView commitPreviewingViewController:(UIViewController *)previewingViewController API_AVAILABLE(ios(10.0));
+```
 > W
 
+###### WKScriptMessageHandler
 
-
-
+```
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message;
+```
+> 该方法是 WKScriptMessageHandler 协议中必须实现的方法，提高App与web端交互的关键，它可以直接将接收到的JS脚本转为OC或Swift对象。
 
 
 
