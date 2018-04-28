@@ -37,76 +37,53 @@
 >4.WebViewJavascriptBridge 。适用于 WKwebView 与 UIWebView 。
 
 
+###### 移动端H5(Web页)的展示
+1. 依据项目需求自定义一个基于 WKWebView 的子类，做到低耦合，以便项目使用
+2. 关于混合式开发需要考虑如下几个问题
 
-###### URL 截断跳转问题：
+    > 2.0 某一个 Web 页前后可能是原生也可能是 Web 页
 
-解析 URL ,依据规则跳转到对应的 Native 控制器 。
+    > 2.1 加载某一个 Web 页的URL（一般结构：协议头 | 域名 | 端口 | 文件路径 | 参数）多样
 
-规则初步拟定：
-* 1.域名区分站内与站外
+    > 2.2 加载 Web 页过程中 URL 重定向
 
-* 2.协议头 | 域名 | 端口  | 文件路径  | 参数
+    > 2.3 加载 Web 页过程中有表单提交（Web 页表单提交操作）
 
-* 3.可用于区分跳转的自定义部分为 文件路径
+    > 2.4 即便是 Web 页，也涉及原生元素(example:导航栏样式)的显示问题
 
-    > 文件路径 ： 标记跳转的功能块
+    > 2.5 Web 页面回退(URL加载堆栈推出栈顶元素) - goBack 过程中，Web 页面会重新加载
 
+3. 基于第一、二点可以将混合式开发拆分为两个关键问题：Web加载组件的解耦封装、 跳转问题。第一个关键问题没有太多笔记记录，直接看 Demo 。第二个关键问题需要前后端约定跳转规则。
+就项目而言，经过三个版本迭代，已实现移动端可加载任意URL的跳转，并且加载样式完全又后台控制 --- 这样做的好处在于，即便在线上出现问题，后台也可以及时修改，不需要重新发包。
 
-* 4.功能对应关系
+4. 第一版：在项目需要跳转的地方后台拼接以  ios:jumpxxx:https://xxx 样式的 URL ，移动端拦截跳转到对应类型的控制器，展示对应的页面。
 
-    * 帖子详情 ----- jumpTribeThemDetail
-    > https://m.hnb.com/tribe/jumpTribeThemDetail?them_id=43
+   第二版：移动端拦截当前 URL ，并提取关键词跳转到对应处理模块，展示对应的页面。
+```
+// 帖子详情 ----- jumpTribeThemDetail
+https://m.hnb.com/tribe/tribeThemDetail?them_id=43
 
-    * 问答详情 ----- jumpQaDetail
-    > https://m.hnb.com/qa/jumpQaDetail?qa_id=43
+//问答详情 ----- jumpQaDetail
+https://m.hnb.com/qa/qaDetail?qa_id=43
 
-    * 问答搜索 ----- jumpQaSearch
-    > https://m.hnb.com/qa/jumpTribeThemDetail?qa_des=english
+//问答搜索 ----- jumpQaSearch
+https://m.hnb.com/qa/tribeThemDetail?qa_des=english
 
-    * 移民评估 ----- jumpImaseess
-    > https://m.hnb.com/assess/jumpImaseess.html
+//评估 ----- jumpImaseess
+https://m.hnb.com/assess/imaseess.html
 
-* 5.方案
+```
 
-> 采用 URL 截取的方式实现跳转时，对于关键词的提取为便于迭代开发中 URL 地址的更换或修改，以及 应用发布后增强后台控制能力。链接可以采用 ：功能块关键词 + 跳转关键词 + 末尾是否跳转参数 。
+第三版：加载 Web 的类只有一个，该类实例化的对象具备
+    1. 解析 URL 参数的能力
+    2. 具备依据参数设置个性化需求的能力 (example:导航栏显示样式)
+    3. 每次展示都需要检查参数设置
+    4. 原则上拦截到新的 URL 都会新生成一个实例来加载 Web 页，但也有一些情况不需要重新生成新的实例来加载(example：重定向、新生成的控制器对象即第一次加载URL、表单提交)。
 
-###### 项目中遇到的问题：
+5. 三个版本简要对比：
+ > 三个版本均采用拦截 URL 方式
+  版本一与版本二很大的弊端是针对每个不同的 Web 页都有有限的类与之对应，随着项目迭代，这部分的修改就不是一般的繁琐
 
-1. 页面的前进与后退
+ > 版本一与版本二提取关键字的方式不能及时修复线上问题且不利于后台代码在版本迭代中的维护
 
-    1.1 前进 (push 或 load)
-
-    1.2 后退 (pop 或 goBack)
-
-2. Web 页与 Native 页间相互跳转
-
-  2.1 原生 --- > Web
-
-  2.2 Web --- > 原生
-
-  2.3 即便是 Web 页也是需要原生容器承载
-
-3. 项目中现存的跳转设计
-
-  * 1.URL 截取 ，只处理 “iOSjump：方法名” 方式实现跳转
-  * 2.URL 截取 关键字段跳转
-
-
-4. 场景描述：
-
-> 当控制器堆栈中已存在很多页面(控制器 --- 多个Web可能存在于同一个控制器)时，点击当前 Web 页面中的某一处，可以路由到相应的功能模块。
-
-> 综上，在跳转的路由可以采用截取 URL 提取关键词方式及必要时采用点击事件调起的方式设计。
-
-
-##### 参考
-
-* [WKWeb​View - Swift 版本](http://nshipster.cn/wkwebkit/)
-* [Java​Script​Core - Swift 版本](http://nshipster.cn/javascriptcore/)
-* [WKWebView简单使用及关于缓存的问题](http://www.cnblogs.com/allencelee/p/6709599.html)
-* [iOS9 WKWebView 缓存清除API](http://www.jianshu.com/p/186a3b236bc9)
-* [iOS 下 JS 与原生 native 互相调用 --- 系列文章](http://www.jianshu.com/p/d19689e0ed83)
-* [HTML meta viewport属性说明 --- H5页面适配到移动端窗口](http://www.cnblogs.com/pigtail/archive/2013/03/15/2961631.html)
-* [iOS下Html页面中input获取焦点弹出键盘时挡住input解决方案—scrollIntoView()](http://www.cnblogs.com/wx1993/p/6059668.html)
-* [WKWebView 刷新机制小探](https://www.jianshu.com/p/1d739e2e7ed2)
-> 项目中遇到的很多问题多半是因为见得太少，思考的太少。总结过程中，无意间发现早有大牛对该部分内容作了详细总结；贴上地址，方便今后查找。
+ > 版本三能够很好的解决版本一、二的问题，且能满足跳转任意 Web 页的产品需求。

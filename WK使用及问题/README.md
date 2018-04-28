@@ -244,3 +244,22 @@ typedef NS_ENUM(NSInteger, WKNavigationResponsePolicy) {
 } API_AVAILABLE(macosx(10.10), ios(8.0));
 
 ```
+
+##### 使用中常见问题
+
+* 缓存
+
+* 刷新机制 - 圈子详情中主贴显示
+
+
+##### 参考
+
+* [WKWeb​View - Swift 版本](http://nshipster.cn/wkwebkit/)
+* [Java​Script​Core - Swift 版本](http://nshipster.cn/javascriptcore/)
+* [WKWebView简单使用及关于缓存的问题](http://www.cnblogs.com/allencelee/p/6709599.html)
+* [iOS9 WKWebView 缓存清除API](http://www.jianshu.com/p/186a3b236bc9)
+* [iOS 下 JS 与原生 native 互相调用 --- 系列文章](http://www.jianshu.com/p/d19689e0ed83)
+* [HTML meta viewport属性说明 --- H5页面适配到移动端窗口](http://www.cnblogs.com/pigtail/archive/2013/03/15/2961631.html)
+* [iOS下Html页面中input获取焦点弹出键盘时挡住input解决方案—scrollIntoView()](http://www.cnblogs.com/wx1993/p/6059668.html)
+* [WKWebView 刷新机制小探](https://www.jianshu.com/p/1d739e2e7ed2)
+> 项目中遇到的很多问题多半是因为见得太少，思考的太少。总结过程中，无意间发现早有大牛对该部分内容作了详细总结；贴上地址，方便今后查找。
