@@ -104,7 +104,7 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     
     NSString *URLString = navigationAction.request.URL.absoluteString;
-    NSLog(@" \n \n %s - http:%@\n \n",__func__,URLString);
+    NSLog(@" \n \n %s - %@\n \n",__func__,URLString);
     WKNavigationActionPolicy policy = WKNavigationActionPolicyAllow;
     if ([URLString hasPrefix:@"http://www.baidu.com"]) {
         [self showNavTipWithMsg:URLString];

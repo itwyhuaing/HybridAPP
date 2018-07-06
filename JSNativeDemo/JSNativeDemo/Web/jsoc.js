@@ -20,3 +20,9 @@ function modifyDivText(divID,nativeText){
     alert(divID);
     document.getElementById(divID).innerHTML = nativeText;
 }
+
+function openOtherAPP(){
+    //appSDemoB://Detail?para=99web";
+    window.location.href = "weixin://";
+    //alert(window.navigator.userAgent); https://blog.csdn.net/qq_31411389/article/details/68485700
+}
