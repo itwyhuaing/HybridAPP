@@ -5,7 +5,7 @@ function JSOC1() {
 }
 
 function JSOC2() {
-    window.webkit.messageHandlers.JSMethod.postMessage({title:'测试title',content:'测试content',url:'测试url'});
+    window.webkit.messageHandlers.JSMethod.postMessage({title:'测试title',content:'测试content',url:'测试url',holon:});
 }
 
 function JSOC3() {
