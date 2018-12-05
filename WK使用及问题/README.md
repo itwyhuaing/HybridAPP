@@ -1,5 +1,4 @@
-WK使用及问题
-记录：WK使用及问题。
+#### WK使用及问题。
 
 > 移动端加载 web 页的新组件 WKWebView 随着 iOS8  的更新也被添加到开发行列中。
 > 相比于 UIWebView 组件，WKWebView 在加载速度及性能方面都有很大改善。
@@ -214,7 +213,28 @@ WK使用及问题
 
 * WKHTTPCookieStore
 
+* WKWebsiteDataStore
+
+```
+iOS9 以后才能用这个类，是代表 webView 不同的数据类型，cookies、disk、memory caches、WebSQL、IndexedDB数据库和本地存储。
+
+// 三行代码执行之后，客户端的所有 web 缓存会被清除，打开 web 的所需资源会前往服务器获取最新资源，而不是读取本地的或网络节点的缓存。
+NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+[[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+    //删除后执行操
+}];
+
+```
+
+* WKWebsiteDataRecord
+
+```
+暂未发现有什么重要的应用。
+```
+
 * 几个结构体
+
 ```
 // navigationAction.navigationType
 
@@ -254,12 +274,32 @@ typedef NS_ENUM(NSInteger, WKNavigationResponsePolicy) {
 
 ##### 参考
 
+> swift 版本应用
+
 * [WKWeb​View - Swift 版本](http://nshipster.cn/wkwebkit/)
 * [Java​Script​Core - Swift 版本](http://nshipster.cn/javascriptcore/)
+
+
+> WKWeb 缓存
+
 * [WKWebView简单使用及关于缓存的问题](http://www.cnblogs.com/allencelee/p/6709599.html)
 * [iOS9 WKWebView 缓存清除API](http://www.jianshu.com/p/186a3b236bc9)
+* [NSURLRequestCachePolicy—iOS缓存策略](https://blog.csdn.net/pjk1129/article/details/50674835)
+* [iOS11.3 WKWebView清除cookie](https://blog.csdn.net/u012413955/article/details/79783282) iOS 11 已将 web 所有的缓存数据类型清除功能暴露给原生。
+
+> web 与 native 交互
+
 * [iOS 下 JS 与原生 native 互相调用 --- 系列文章](http://www.jianshu.com/p/d19689e0ed83)
+
+
+> WKWebView 嵌入 cell 加载 web ,动态修正高度
+
+* [WKWebView 刷新机制小探](https://www.jianshu.com/p/1d739e2e7ed2)
+
+
+> web 富文本编辑器
+
 * [HTML meta viewport属性说明 --- H5页面适配到移动端窗口](http://www.cnblogs.com/pigtail/archive/2013/03/15/2961631.html)
 * [iOS下Html页面中input获取焦点弹出键盘时挡住input解决方案—scrollIntoView()](http://www.cnblogs.com/wx1993/p/6059668.html)
-* [WKWebView 刷新机制小探](https://www.jianshu.com/p/1d739e2e7ed2)
-> 项目中遇到的很多问题多半是因为见得太少，思考的太少。总结过程中，无意间发现早有大牛对该部分内容作了详细总结；贴上地址，方便今后查找。
+
+* 项目中遇到的很多问题多半是因为见得太少，思考的太少。总结过程中，无意间发现早有大牛对该部分内容作了详细总结；贴上地址，方便今后查找。
