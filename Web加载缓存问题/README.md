@@ -1,4 +1,4 @@
-####### Web加载缓存问题
+###### Web加载缓存问题
 
 
 
@@ -46,7 +46,7 @@
 
 ![image](https://github.com/itwyhuaing/HybridAPP/blob/master/Web加载缓存问题/image/WK_26.png)
 
-![image](https://github.com/itwyhuaing/HybridAPP/blob/master/Web加载缓存问题/image/WK_27 .png)
+![image](https://github.com/itwyhuaing/HybridAPP/blob/master/Web加载缓存问题/image/WK_27.png)
 
 
 * 2.3 页面反复进入多次之后，未清除缓存，此时 .html 、.js 、.css 三个资源文件均已被修改并发布，请求响应头 cache-control 设置为 no-cache 属性的文件在此时再次进入时会立刻前往服务器请求资源，而设置为 max-age=43200 属性的文件在此时再次进入时并没相应的请求发出。(这里的 4320 单位为秒，即 12 小时，在该时间内该资源文件会直接读取本地已缓存数据)
