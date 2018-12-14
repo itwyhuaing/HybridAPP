@@ -9,6 +9,10 @@
 #import "WKWebVC.h"
 #import <WebKit/WebKit.h>
 
+
+static NSString *JSMethod           = @"JSMethod";
+static NSString *openWXAPP       = @"openWXAPP";
+
 @interface WKWebVC () <WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 
 @property (nonatomic,strong) WKWebView *wkweb;
@@ -33,13 +37,16 @@
     
     CGRect rect = self.view.bounds;
     rect.size.height /= 2.0;
+    rect.size.height += 80;
     WKWebViewConfiguration *cfg = [[WKWebViewConfiguration alloc] init];
     _wkweb = [[WKWebView alloc] initWithFrame:rect configuration:cfg];
     _wkweb.backgroundColor = [UIColor greenColor];
     _wkweb.navigationDelegate = self;
     _wkweb.UIDelegate = self;
     [self.view addSubview:_wkweb];
-    [_wkweb.configuration.userContentController addScriptMessageHandler:self name:@"JSMethod"];
+    
+    [_wkweb.configuration.userContentController addScriptMessageHandler:self name:JSMethod];
+    [_wkweb.configuration.userContentController addScriptMessageHandler:self name:openWXAPP];
     
     [self showUI];
     
@@ -69,12 +76,12 @@
     des.textColor = [UIColor blackColor];
     des.numberOfLines = 0;
     des.font = [UIFont systemFontOfSize:15.0];
-    des.text = @" native 调用原生方法及传参给 web ： - (void)evaluateJavaScript:(NSString *)javaScriptString completionHandler:(void (^ _Nullable)(_Nullable id, NSError * _Nullable error))completionHandler";
+    des.text = @" native 调用原生方法及传参给 web ： \n - (void)evaluateJavaScript:(NSString *)javaScriptString completionHandler:(void (^ _Nullable)(_Nullable id, NSError * _Nullable error))completionHandler";
     
     rect.size = CGSizeMake(200, 30);
     rect.origin = CGPointMake((self.view.bounds.size.width - rect.size.width) / 2.0,
                               CGRectGetMaxY(des.frame) + 15.0);
-    UIButton *btn1 = [self createButtonWithTitle:@"Native 调起 JS 方法" rect:rect];
+    UIButton *btn1 = [self createButtonWithTitle:@"点击UIButton调起JS方法,修改HTML" rect:rect];
     [btn1 addTarget:self action:@selector(clickBtn1:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.nativeHolder addSubview:des];
@@ -96,7 +103,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.wkweb.configuration.userContentController removeScriptMessageHandlerForName:@"JSMethod"];
+    [self.wkweb.configuration.userContentController removeScriptMessageHandlerForName:JSMethod];
+    [self.wkweb.configuration.userContentController removeScriptMessageHandlerForName:openWXAPP];
 }
 
 #pragma mark ------------ WKNavigationDelegate
@@ -112,7 +120,6 @@
     }
     decisionHandler(policy);
 }
-
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
     NSLog(@" \n \n %s \n \n",__func__);
@@ -161,12 +168,23 @@
     
 }
 
-
-
 #pragma mark ------------ WKScriptMessageHandler
 
 -(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     NSLog(@"\n \n %@ \n \n %@ \n \n %@ \n \n",message.body,message.frameInfo,message.name);
+    if ([message.name isEqualToString:JSMethod]) {
+        
+    }
+    
+    if ([message.name isEqualToString:openWXAPP]) {
+        // info.plist 文件需要先配置 LSApplicationQueriesSchemes 白名单
+        NSArray *cntData = [message.body objectForKey:@"content"];
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",cntData.firstObject]]] ||
+            [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",cntData.lastObject]]]) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",cntData.firstObject]]];
+        }
+    }
+    
 }
 
 #pragma mark ------------
@@ -175,17 +193,37 @@
 
 
 - (void)clickBtn1:(UIButton *)btn{
-    NSString *js = @"testDivText()";
+    NSString *para1 = @"pstring";
+    NSArray  *dict  = @{
+                        @"key1":@"V1",
+                        @"key2":@"V2"
+                        };
+    NSArray *arr = @[@"a1",@"a2"];
+    NSString *dict2 = @"{k1:\"value1\",k2:\"value2\"}";
+    
+    // str
+    NSString *js = [NSString stringWithFormat:@"testDivText(\"%@\");",para1];
+    
+    // str - dic
+    NSString *js2 = [NSString stringWithFormat:@"testDivText(\"%@\",%@);",para1,dict2];
+    
+    // str - arr
+    NSString *js3 = [NSString stringWithFormat:@"testDivText(\"%@\",%@);",para1,arr];
+    
+    // 只传 字符串
     [self.wkweb evaluateJavaScript:js completionHandler:^(id _Nullable info, NSError * _Nullable error) {
         NSLog(@" \n \n info :%@ \n \n",info);
     }];
     
-    NSHTTPCookieStorage *cs = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSArray *css = [cs cookies];
-    NSHTTPCookie *ck = [[NSHTTPCookie alloc] init];
-    NSLog(@"");
+    // 传 字符串 - 字典
+    [self.wkweb evaluateJavaScript:js2 completionHandler:^(id _Nullable info, NSError * _Nullable error) {
+        NSLog(@" \n \n info :%@ \n \n",info);
+    }];
     
-    
+    // 传 字符串 - 数组 -
+//    [self.wkweb evaluateJavaScript:js3 completionHandler:^(id _Nullable info, NSError * _Nullable error) {
+//        NSLog(@" \n \n info :%@ \n \n",info);
+//    }];
     
 }
 
