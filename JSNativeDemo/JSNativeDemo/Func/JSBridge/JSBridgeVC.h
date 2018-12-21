@@ -8,6 +8,6 @@
 
 #import "UIBaseFuncVC.h"
 
-@interface JSBridgeVC : UIBaseFuncVC
+@interface JSBridgeVC : UIViewController
 
 @end

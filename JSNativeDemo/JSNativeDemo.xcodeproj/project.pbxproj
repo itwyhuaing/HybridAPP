@@ -22,6 +22,7 @@
 		26B078582094587B00B4CB3C /* JXCommonWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B078572094587B00B4CB3C /* JXCommonWebVC.m */; };
 		26B0785B209458A700B4CB3C /* JXWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0785A209458A700B4CB3C /* JXWebView.m */; };
 		26B0785E209458BE00B4CB3C /* JXWebManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0785D209458BE00B4CB3C /* JXWebManager.m */; };
+		26FCA6A421C3BA950096C4B3 /* bridge.html in Resources */ = {isa = PBXBuildFile; fileRef = 26FCA6A321C3BA950096C4B3 /* bridge.html */; };
 		460CD247207BBB9B00B951F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460CD245207BBB9B00B951F7 /* Main.storyboard */; };
 		460CD249207BBB9B00B951F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 460CD248207BBB9B00B951F7 /* Assets.xcassets */; };
 		460CD24C207BBB9B00B951F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460CD24A207BBB9B00B951F7 /* LaunchScreen.storyboard */; };
@@ -60,6 +61,7 @@
 		26B0785A209458A700B4CB3C /* JXWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXWebView.m; sourceTree = "<group>"; };
 		26B0785C209458BE00B4CB3C /* JXWebManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXWebManager.h; sourceTree = "<group>"; };
 		26B0785D209458BE00B4CB3C /* JXWebManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXWebManager.m; sourceTree = "<group>"; };
+		26FCA6A321C3BA950096C4B3 /* bridge.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = bridge.html; sourceTree = "<group>"; };
 		460CD23C207BBB9A00B951F7 /* JSNativeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSNativeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		460CD246207BBB9B00B951F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		460CD248207BBB9B00B951F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,14 +145,14 @@
 		26820C4B207CC63D00E38FE2 /* WebViewJavascriptBridge */ = {
 			isa = PBXGroup;
 			children = (
+				26820C50207CC63D00E38FE2 /* WebViewJavascriptBridgeBase.h */,
 				26820C4C207CC63D00E38FE2 /* WebViewJavascriptBridgeBase.m */,
+				26820C53207CC63D00E38FE2 /* WKWebViewJavascriptBridge.h */,
 				26820C4D207CC63D00E38FE2 /* WKWebViewJavascriptBridge.m */,
+				26820C52207CC63D00E38FE2 /* WebViewJavascriptBridge.h */,
 				26820C4E207CC63D00E38FE2 /* WebViewJavascriptBridge.m */,
 				26820C4F207CC63D00E38FE2 /* WebViewJavascriptBridge_JS.h */,
-				26820C50207CC63D00E38FE2 /* WebViewJavascriptBridgeBase.h */,
 				26820C51207CC63D00E38FE2 /* WebViewJavascriptBridge_JS.m */,
-				26820C52207CC63D00E38FE2 /* WebViewJavascriptBridge.h */,
-				26820C53207CC63D00E38FE2 /* WKWebViewJavascriptBridge.h */,
 			);
 			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
@@ -168,6 +170,7 @@
 		26974C6721215FE200AD6880 /* BridgeWeb */ = {
 			isa = PBXGroup;
 			children = (
+				26FCA6A321C3BA950096C4B3 /* bridge.html */,
 			);
 			path = BridgeWeb;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				26974C6921215FE200AD6880 /* jsoc.html in Resources */,
 				460CD24C207BBB9B00B951F7 /* LaunchScreen.storyboard in Resources */,
 				26974C6A21215FE200AD6880 /* jsoc.css in Resources */,
+				26FCA6A421C3BA950096C4B3 /* bridge.html in Resources */,
 				26974C6821215FE200AD6880 /* jsoc.js in Resources */,
 				460CD249207BBB9B00B951F7 /* Assets.xcassets in Resources */,
 				460CD247207BBB9B00B951F7 /* Main.storyboard in Resources */,

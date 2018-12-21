@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray *tmpData = @[@"URL 拦截",@"JavaScriptCore ",@"WebViewJavascriptBridge",@"MessageHandler - WK 特有",@"WKDemo 效果"];
+    NSArray *tmpData = @[@"URL 拦截",@"JavaScriptCore ",@"WebViewJavascriptBridge + WKWebView",@"MessageHandler - WK 特有",@"WKDemo 效果"];
     _dataSource = [[NSMutableArray alloc] initWithArray:tmpData];
   
 }
@@ -54,7 +54,7 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIBaseFuncVC *vc;
+    UIViewController *vc;
     NSInteger location = FunctionInterceptVCType + indexPath.row;
     switch (location) {
         case FunctionInterceptVCType:
