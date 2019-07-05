@@ -6,7 +6,7 @@
 //  Copyright © 2018年 ZhiXing. All rights reserved.
 //
 
-#import "UIBaseFuncVC.h"
+#import <UIKit/UIKit.h>
 
 @interface JSBridgeVC : UIViewController
 

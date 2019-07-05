@@ -16,12 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = NSStringFromClass(self.class);
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
--(void)eventSourceTouchBtn:(UIButton *)btn{
-    NSLog(@" JSCoreVC - %s ",__FUNCTION__);
-}
 
 
 - (void)didReceiveMemoryWarning {

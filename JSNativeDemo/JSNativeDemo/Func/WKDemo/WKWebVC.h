@@ -6,9 +6,9 @@
 //  Copyright © 2017年 hainbwyh. All rights reserved.
 //
 
-#import "UIBaseFuncVC.h"
+#import <UIKit/UIKit.h>
 
-@interface WKWebVC : UIBaseFuncVC
+@interface WKWebVC : UIViewController
 
 @property (nonatomic,strong) NSURLRequest *req;
 

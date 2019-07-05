@@ -9,7 +9,6 @@
 #import "WKWebVC.h"
 #import <WebKit/WebKit.h>
 
-
 static NSString *JSMethod           = @"JSMethod";
 static NSString *openWXAPP       = @"openWXAPP";
 

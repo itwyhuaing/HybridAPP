@@ -21,23 +21,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = NSStringFromClass(self.class);
     self.view.backgroundColor = [UIColor orangeColor];
+    
+    // Web + Bridge
     self.webViewBridge = [WKWebViewJavascriptBridge bridgeForWebView:self.wkweb];
     [self.webViewBridge setWebViewDelegate:self];
     NSString *budlePath = [[NSBundle mainBundle] pathForResource:@"bridge.html" ofType:nil];
     [self.wkweb loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:budlePath]]];
  
     
+    // Button
     CGRect rect = CGRectZero;
     rect.size = CGSizeMake(320, 30);
     rect.origin = CGPointMake((self.view.bounds.size.width - rect.size.width) / 2.0,
                               CGRectGetMaxY(self.wkweb.frame) + 15.0);
     UIButton *btn1 = [self createButtonWithTitle:@"点击Btn调起JS方法 getSomeInfo" rect:rect];
     [btn1 addTarget:self action:@selector(clickEventBtn:) forControlEvents:UIControlEventTouchUpInside];
-    rect.size = CGSizeMake(200, 30);
+    rect.size = CGSizeMake(320, 30);
     rect.origin = CGPointMake((self.view.bounds.size.width - rect.size.width) / 2.0,
                               CGRectGetMaxY(btn1.frame) + 15.0);
-    UIButton *btn2 = [self createButtonWithTitle:@"点击Btn调起JS方法 testFunc" rect:rect];
+    UIButton *btn2 = [self createButtonWithTitle:@"点击Btn调起JS方法 Alert" rect:rect];
     [btn1 addTarget:self action:@selector(clickEventBtn:) forControlEvents:UIControlEventTouchUpInside];
     btn1.tag = 100;
     btn2.tag = 200;
@@ -50,14 +54,7 @@
     
 }
 
-- (UIButton *)createButtonWithTitle:(NSString *)title rect:(CGRect)rect{
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:title forState:UIControlStateNormal];
-    [btn setFrame:rect];
-    btn.layer.cornerRadius = rect.size.height / 2.0;
-    btn.backgroundColor = [UIColor blackColor];
-    return btn;
-}
+#pragma mark --- event 
 
 - (void)clickEventBtn:(UIButton *)btn{
     if (btn.tag == 100) {
@@ -71,8 +68,7 @@
     }
 }
 
-- (void)registLocationFunction
-{
+- (void)registLocationFunction {
     [self.webViewBridge registerHandler:@"locationClick" handler:^(id data, WVJBResponseCallback responseCallback) {
         // 获取位置信息
         NSString *location = @"广东省深圳市南山区学府路XXXX号";
@@ -81,7 +77,7 @@
     }];
 }
 
-- (void)registerGobackFunction{
+- (void)registerGobackFunction {
     [self.webViewBridge registerHandler:@"goback" handler:^(id data, WVJBResponseCallback responseCallback) {
        
         if ([self.wkweb canGoBack]) {
@@ -91,6 +87,17 @@
         };
         
     }];
+}
+
+#pragma mark --- UI
+
+- (UIButton *)createButtonWithTitle:(NSString *)title rect:(CGRect)rect{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setFrame:rect];
+    btn.layer.cornerRadius = rect.size.height / 2.0;
+    btn.backgroundColor = [UIColor blackColor];
+    return btn;
 }
 
 -(WKWebView *)wkweb{

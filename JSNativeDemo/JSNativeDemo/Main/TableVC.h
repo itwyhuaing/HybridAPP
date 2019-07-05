@@ -8,14 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum : NSUInteger {
-    FunctionInterceptVCType = 20000,
-    FunctionJSCoreVCType,
-    FunctionJSBridgeVCType,
-    FunctionMsgHandlerVCType,
-    FunctionWKDemoShowType,
-} FunctionVCType;
-
 @interface TableVC : UITableViewController
 
 @end

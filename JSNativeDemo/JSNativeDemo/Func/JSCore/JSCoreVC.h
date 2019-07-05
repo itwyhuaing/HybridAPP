@@ -6,8 +6,9 @@
 //  Copyright © 2018年 ZhiXing. All rights reserved.
 //
 
-#import "UIBaseFuncVC.h"
+#import <UIKit/UIKit.h>
 
-@interface JSCoreVC : UIBaseFuncVC
+
+@interface JSCoreVC : UIViewController
 
 @end
