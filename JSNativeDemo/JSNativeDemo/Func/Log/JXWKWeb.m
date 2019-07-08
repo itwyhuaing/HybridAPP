@@ -13,16 +13,22 @@
 @end
 
 
+
 @implementation JXWKWeb
 
 - (instancetype)initWithFrame:(CGRect)frame configuration:(WKWebViewConfiguration *)configuration {
     self = [super initWithFrame:frame configuration:configuration];
     if (self) {
         //rewrite the method of console.log
+//        NSString *js = @"console.log = (function(originFunc){\
+//                                            return function(info) {\
+//                                                window.webkit.messageHandlers.log.postMessage(info);\
+//                                                originFunc.call(console,info);\
+//                                            }\
+//                                        })(console.log)";
         NSString *js = @"console.log = (function(originFunc){\
                                             return function(info) {\
                                                 window.webkit.messageHandlers.log.postMessage(info);\
-                                                originFunc.call(console,info);\
                                             }\
                                         })(console.log)";
         

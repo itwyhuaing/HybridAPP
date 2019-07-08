@@ -1,12 +1,7 @@
 # HybridAPP
-  1. native 与 js间交互相关问题。
-
-  2. 原生应用中实现多样性&个性化的 web 跳转
-
-  3. [WK使用及问题](https://github.com/itwyhuaing/HybridAPP/tree/master/WK使用及问题)  [Web加载缓存问题](https://github.com/itwyhuaing/HybridAPP/tree/master/Web加载缓存问题)
 
 
-###### JS 与 native 间的交互问题 :
+###### JS 与 native 间的交互问题
 
 1. JS 点击事件调用 native 方法
 
@@ -22,9 +17,10 @@
 
 7. 如何实现原生应用中个性化 web 的加载和跳转
 
+
 ###### 交互方式
 
-1. native 调起 JS 方法或注入变量比较固定，只需通过 webkit 提供的 API 传递相应的 JS 语句执行即可。
+1. native 调起 JS 方法或注入变量比较固定，只需通过 webkit 提供的 API 传递相应的 JS 语句执行即可 。
 
 2. JS 调用 native ：
 
@@ -42,7 +38,7 @@
   > 4. WebViewJavascriptBridge 。适用于 WKwebView 与 UIWebView 。
 
 
-###### 移动端 H5(Web页) 的展示
+###### 公司项目优化笔记 - 移动端 H5(Web页) 的展示
 
 1. 依据项目需求自定义一个基于 WKWebView 的子类，做到低耦合，以便项目使用
 
@@ -83,3 +79,10 @@
  > 版本一与版本二提取关键字的方式不能及时修复线上问题且不利于后台代码在版本迭代中的维护
 
  > 版本三能够很好的解决版本一、二的问题，且能满足跳转任意 Web 页的产品需求。
+
+
+#####
+
+1. [WKWeb输出Console.log日志](https://github.com/itwyhuaing/HybridAPP/tree/master/WKWeb输出Console.log日志)
+
+2. [WK使用及问题](https://github.com/itwyhuaing/HybridAPP/tree/master/WK使用及问题)  [Web加载缓存问题](https://github.com/itwyhuaing/HybridAPP/tree/master/Web加载缓存问题)
