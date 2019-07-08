@@ -28,7 +28,7 @@
     WKWebViewConfiguration *cfg = [[WKWebViewConfiguration alloc] init];
     self.wkweb = [[JXWKWeb alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(bounds), CGRectGetHeight(bounds)/2.0) configuration:cfg];
     [self.view addSubview:self.wkweb];
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"WKHandlerWeb" ofType:@"html"];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"logweb" ofType:@"html"];
     [self.wkweb loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filePath]]];
     self.view.backgroundColor = [UIColor purpleColor];
     self.wkweb.backgroundColor = [UIColor cyanColor];
