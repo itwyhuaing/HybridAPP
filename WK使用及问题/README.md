@@ -1,8 +1,14 @@
 #### WK使用及问题。
 
+* WKWebView 与 UIWebView
+
 > 移动端加载 web 页的新组件 WKWebView 随着 iOS8  的更新也被添加到开发行列中。
 > 相比于 UIWebView 组件，WKWebView 在加载速度及性能方面都有很大改善。
 > UIWebView 与 UIWebDelegate 所实现的功能，在 WKWebKit 中被重构成 16个 类、3个协议。
+
+* WKWebView 基本使用
+
+  >  相比于 UIWebView ，WKWebView 只可以用代码创建；而且新增了右滑返回手势能力(allowsBackForwardNavigationGestures)、加载进度条能力（estimatedProgress）、以及可以使内嵌视频正常播放的配置属性（allowsInlineMediaPlayback，该值默认为NO）。
 
 ##### 类
 
@@ -303,3 +309,8 @@ typedef NS_ENUM(NSInteger, WKNavigationResponsePolicy) {
 * [iOS下Html页面中input获取焦点弹出键盘时挡住input解决方案—scrollIntoView()](http://www.cnblogs.com/wx1993/p/6059668.html)
 
 * 项目中遇到的很多问题多半是因为见得太少，思考的太少。总结过程中，无意间发现早有大牛对该部分内容作了详细总结；贴上地址，方便今后查找。
+
+
+> web 加载过程中证书受信问题
+
+* [iOS开发---WKWebView加载不受信任的https](https://www.jianshu.com/p/7648f10613fa)

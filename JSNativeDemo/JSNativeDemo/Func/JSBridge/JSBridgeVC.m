@@ -54,6 +54,18 @@
     
 }
 
+-(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    NSLog(@"\n === Start === \n");
+}
+
+-(void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
+    NSLog(@"\n === Commit === \n");
+}
+
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    NSLog(@"\n === Finish === \n");
+}
+
 #pragma mark --- event 
 
 - (void)clickEventBtn:(UIButton *)btn{
